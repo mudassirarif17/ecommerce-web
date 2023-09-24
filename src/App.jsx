@@ -10,20 +10,22 @@ import Cart from "./pages/Cart/Cart";
 import AllProducts from "./pages/allproducts/AllProducts";
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Nopage from "./pages/nopage/Nopage";
-
+import MyState from './context/data/myState';
 
 const App = () => {
   return (
+    <MyState>
     <Router>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/order" element={<Order/>}></Route>
-        <Route path="/allproducts" element={<AllProducts/>}></Route>
-        <Route path="/cart" element={<Cart/>}></Route>
-        <Route path="/dashboard" element={<Dashboard/>}></Route>
-        <Route path="/*" element={<Nopage/>}></Route>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/order" element={<Order/>}/>
+        <Route path="/cart" element={<Cart/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/allproducts" element={<AllProducts/>}/>
+        <Route path="/*" element={<Nopage/>}/>
       </Routes>
     </Router>
+    </MyState>
   )
 }
 

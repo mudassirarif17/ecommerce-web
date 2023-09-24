@@ -2,9 +2,9 @@ import React from 'react'
 
 const Nopage = () => {
   return (
-    <div>
+    <Layout>
       No Page
-    </div>
+    </Layout>
   )
 }
 

@@ -2,9 +2,9 @@ import React from 'react'
 
 const Cart = () => {
   return (
-    <div>
+    <Layout>
       Cart
-    </div>
+    </Layout>
   )
 }
 
