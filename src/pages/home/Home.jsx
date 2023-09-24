@@ -1,24 +1,18 @@
 import React , {useContext} from 'react';
 import Layout from "../../components/Layout/Layout";
 import myContext from "../../context/data/myContext";
-
+import HeroSection from "../../components/heroSection/heroSection"
 
 const Home = () => {
   const context = useContext(myContext);
   // When state has only one property
   // const {name , rollno} = context;
 
-  const {state , color} = context;
+  const {mode , toggleMode} = context;
   return (
-<<<<<<< HEAD
     <Layout>
-      <h1>name : {state.name}</h1>
-      <h1>roll no : {state.rollno}</h1>
-      <h1>color : {color}</h1>
+      <HeroSection/>
     </Layout>
-=======
-    <Layout>Mudassir</Layout>
->>>>>>> f71e811fa6730976df73315a37cdc76095476b67
   )
 }
 
