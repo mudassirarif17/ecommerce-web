@@ -10,11 +10,15 @@ const Home = () => {
 
   const {state , color} = context;
   return (
+<<<<<<< HEAD
     <Layout>
       <h1>name : {state.name}</h1>
       <h1>roll no : {state.rollno}</h1>
       <h1>color : {color}</h1>
     </Layout>
+=======
+    <Layout>Mudassir</Layout>
+>>>>>>> f71e811fa6730976df73315a37cdc76095476b67
   )
 }
 
