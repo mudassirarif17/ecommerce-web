@@ -5,7 +5,7 @@ import { BsFillCloudSunFill } from 'react-icons/bs'
 import { FiSun } from 'react-icons/fi'
 import { Dialog , Transition } from '@headlessui/react';
 import { RxCross2 } from 'react-icons/rx'
-
+import flag from "../../img/pakistan.png";
 
 const Navbar = () => {
   const context = useContext(myContext);
@@ -83,7 +83,7 @@ const Navbar = () => {
                 <div className="border-t border-gray-200 px-4 py-6">
                   <a href="#" className="-m-2 flex items-center p-2">
                     <img
-                      src="img/indiaflag.png"
+                      src={flag}
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
                     />
@@ -148,7 +148,7 @@ const Navbar = () => {
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
-                      src="https://ecommerce-sk.vercel.app/img/pakistanflag.png"
+                      src={flag}
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
                     />
