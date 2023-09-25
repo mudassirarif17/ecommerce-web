@@ -5,6 +5,7 @@ import HeroSection from "../../components/heroSection/heroSection"
 import Filter from '../../components/filter/Filter';
 import ProductCard from '../../components/productCard/ProductCard';
 import Track from '../../components/track/track';
+import Testimonial from '../../components/testimonial/Testimonial';
 
 const Home = () => {
   const context = useContext(myContext);
@@ -18,6 +19,7 @@ const Home = () => {
       <Filter/>
       <ProductCard/>
       <Track/>
+      <Testimonial/>
     </Layout>
   )
 }

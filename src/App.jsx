@@ -9,6 +9,8 @@ import Order from "./pages/Order/Order";
 import Cart from "./pages/Cart/Cart";
 import AllProducts from "./pages/allproducts/AllProducts";
 import Dashboard from "./pages/admin/dashboard/Dashboard";
+import Login from "./pages/registration/Login";
+import SignUp from './pages/registration/SignUp';
 import Nopage from "./pages/nopage/Nopage";
 import MyState from './context/data/myState';
 
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/allproducts" element={<AllProducts/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
         <Route path="/*" element={<Nopage/>}/>
       </Routes>
     </Router>
