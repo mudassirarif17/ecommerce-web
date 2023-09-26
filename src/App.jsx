@@ -12,6 +12,7 @@ import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Login from "./pages/registration/Login";
 import SignUp from './pages/registration/SignUp';
 import Nopage from "./pages/nopage/Nopage";
+import ProductInfo from './pages/productinfo/ProductInfo';
 import MyState from './context/data/myState';
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/allproducts" element={<AllProducts/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/productinfo/:id" element={<ProductInfo/>}/>
         <Route path="/*" element={<Nopage/>}/>
       </Routes>
     </Router>
