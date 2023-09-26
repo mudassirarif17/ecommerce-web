@@ -14,6 +14,8 @@ import SignUp from './pages/registration/SignUp';
 import Nopage from "./pages/nopage/Nopage";
 import ProductInfo from './pages/productinfo/ProductInfo';
 import MyState from './context/data/myState';
+import AddProduct from './pages/admin/pages/Addproduct';
+import UpdateProduct from './pages/admin/pages/updateproduct';
 
 const App = () => {
   return (
@@ -28,6 +30,8 @@ const App = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/productinfo/:id" element={<ProductInfo/>}/>
+        <Route path="/addproduct" element={<AddProduct/>}/>
+        <Route path="/updateproduct" element={<UpdateProduct/>}/>
         <Route path="/*" element={<Nopage/>}/>
       </Routes>
     </Router>
