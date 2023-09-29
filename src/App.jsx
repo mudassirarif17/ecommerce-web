@@ -5,6 +5,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  Navigate,
 } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Order from "./pages/Order/Order";
@@ -25,15 +26,31 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/order" element={<Order/>}/>
+        <Route path="/order" element={
+          <ProtuctedRoute>
+            <Order/>
+          </ProtuctedRoute>
+        }/>
         <Route path="/cart" element={<Cart/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/dashboard" element={
+          <ProtuctedRouteForAdmin>
+            <Dashboard/>
+          </ProtuctedRouteForAdmin>
+        }/>
         <Route path="/allproducts" element={<AllProducts/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/productinfo/:id" element={<ProductInfo/>}/>
-        <Route path="/addproduct" element={<AddProduct/>}/>
-        <Route path="/updateproduct" element={<UpdateProduct/>}/>
+        <Route path="/addproduct" element={
+          <ProtuctedRouteForAdmin>
+            <AddProduct/>
+          </ProtuctedRouteForAdmin>
+        }/>
+        <Route path="/updateproduct" element={
+          <ProtuctedRouteForAdmin>
+            <UpdateProduct/>
+          </ProtuctedRouteForAdmin>
+        }/>
         <Route path="/*" element={<Nopage/>}/>
       </Routes>
       <ToastContainer />
@@ -43,3 +60,24 @@ const App = () => {
 }
 
 export default App
+
+export const ProtuctedRoute = ({children})=>{
+  const user = JSON.parse(localStorage.getItemItem("user"));
+  if(user){
+    return children;
+  }
+  else{
+    <Navigate to={"/login"}/>
+  }
+}
+
+// Admin route
+const ProtuctedRouteForAdmin = ({children})=>{
+  const admin = JSON.parse(localStorage.getItem("user"));
+  if(admin.user.email === "mudassirinoxent@gmail.com"){
+    return children;
+  }
+  else{
+    <Navigate to={"/login"}/>
+  }
+}

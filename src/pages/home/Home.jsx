@@ -25,10 +25,11 @@ const Home = () => {
   }
   return (
     <Layout>
-      <div className="flex justify-center">
+      {/* this is code is just for testing the redux  */}
+      {/* <div className="flex justify-center">
         <button onClick={()=>addCart()} className='bg-gray-300 mx-4'>add</button>
         <button onClick={()=>deleteCart()} className='bg-gray-300 mx-4'>dlt</button>
-      </div>
+      </div> */}
       <HeroSection/>
       <Filter/>
       <ProductCard/>
