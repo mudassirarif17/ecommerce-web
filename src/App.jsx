@@ -62,7 +62,7 @@ const App = () => {
 export default App
 
 export const ProtuctedRoute = ({children})=>{
-  const user = JSON.parse(localStorage.getItemItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
   if(user){
     return children;
   }

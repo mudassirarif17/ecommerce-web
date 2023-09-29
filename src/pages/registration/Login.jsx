@@ -25,6 +25,7 @@ function Login() {
             setLoading(false);
         } catch (error) {
             setLoading(false);
+            toast.error("Invalid Credentials");
             console.log(error);
         }
    }
