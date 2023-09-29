@@ -27,7 +27,7 @@ const Home = () => {
     <Layout>
       <div className="flex justify-center">
         <button onClick={()=>addCart()} className='bg-gray-300 mx-4'>add</button>
-        <button className='bg-gray-300 mx-4'>dlt</button>
+        <button onClick={()=>deleteCart()} className='bg-gray-300 mx-4'>dlt</button>
       </div>
       <HeroSection/>
       <Filter/>
