@@ -43,6 +43,9 @@ const myState = (props) => {
         await addDoc(productRef , products);
         setLoading(false);
         toast.success("Product added successfully");
+        setTimeout(() => {
+          window.location.href = "/dashboard"
+        }, 800);
         getProductData();
       } catch (error) {
         console.log(error);
