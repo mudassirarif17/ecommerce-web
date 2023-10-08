@@ -82,7 +82,7 @@ const myState = (props) => {
 
     useEffect(()=>{
       getProductData();
-    } ,[])
+    } ,[products])
 
     // update product function
     const editHandle = (item)=>{

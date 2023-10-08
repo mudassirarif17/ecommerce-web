@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import myContext from '../../context/data/myContext'
 import { useDispatch, useSelector } from 'react-redux';
 import {addToCart} from "../../redux/cartSlice"
@@ -9,10 +9,17 @@ function ProductCard() {
     const dispatch = useDispatch();
     const cartItems = useSelector ((state)=>state.cart);
 
+    console.log("Cart" , cartItems);
+    // Add to cart function
     const addCart = (product)=>{
         dispatch(addToCart(product));
         toast.success("Add to Cart");
     }
+
+    // storing the cart item in local storage 
+    useEffect(()=>{
+        localStorage.setItem("cart" , JSON.stringify(cartItems));
+    } , [cartItems]);
 
     return (
         <section className="text-gray-600 body-font">

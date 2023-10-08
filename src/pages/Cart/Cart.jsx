@@ -2,12 +2,15 @@ import React, { useContext } from 'react'
 import myContext from '../../context/data/myContext';
 import Layout from '../../components/Layout/Layout';
 import Modal from '../../components/Modal/Modal';
+import { useSelector } from 'react-redux';
 
 function Cart() {
 
   const context = useContext(myContext)
   const { mode } = context;
 
+  const cartItems = useSelector(state => state.cart);
+  
   return (
     <Layout >
       <div className="h-screen bg-gray-100 pt-5 " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
