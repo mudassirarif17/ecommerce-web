@@ -5,8 +5,13 @@ import Modal from '../../components/Modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { deleteFromCart } from '../../redux/cartSlice';
+import { QuerySnapshot, addDoc, collection, onSnapshot, orderBy, query ,Timestamp, setDoc, deleteDoc ,getDoc ,doc } from 'firebase/firestore';
 
 function Cart() {
+  const [name , setName] = useState("");
+  const [address , setAddress] = useState("");
+  const [pincode , setPincode] = useState("");
+  const [phoneNumber , setPhoneNumber] = useState("");
 
   const context = useContext(myContext)
   const { mode } = context;
@@ -39,8 +44,67 @@ function Cart() {
   totalAmount > 0 ? shipping = 100 : shipping = 0; 
   const grandTotal = shipping + totalAmount;
 
-  console.log("total amount",totalAmount)
-  console.log("grandtotal" , grandTotal)
+  const buyNow = async ()=>{
+      if(name === "" || address === "" || pincode === "" || phoneNumber === ""){
+        return toast.error("All fields are required");
+      }
+      const addressInfo = {
+        name,
+        address,
+        pincode,
+        phoneNumber,
+        date: new Date().toLocaleString(
+          "en-US",
+          {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          }
+        )
+      }
+       console.log(addressInfo);
+  }
+
+  // razorpay payment gateway
+  var options = {
+    key: "",
+    key_secret: "",
+    amount: parseInt(grandTotal * 100),
+    currency: "INR",
+    order_receipt: 'order_rcptid_' + name,
+    name: "E-Mart",
+    description: "for testing purpose",
+    handler: function (response) {
+        console.log(response)
+        toast.success('Payment Successful')
+
+        const paymentId = response.razorpay_payment_id;
+        const orderInfo = {
+          cartItems,
+          addressInfo,
+          date : new Date.toLocaleString("en-US" ,{
+            month : "short",
+            day : "2-digit",
+            year : "numeric"
+          }),
+          email: JSON.parse(localStorage.getItem("user")).user.email,
+          userid: JSON.parse(localStorage.getItem("user")).user.uid,
+          paymentId
+        }
+
+        try {
+          const orderRef = collection(fireDB , "orders")
+          addDoc(orderRef , orderInfo);
+
+        } catch (error) {
+          console.log(error);
+        }
+    },
+
+    theme: {
+        color: "#3399cc"
+    }
+};
 
   return (
     <Layout >
@@ -89,7 +153,7 @@ function Cart() {
                 <p className="mb-1 text-lg font-bold" style={{ color: mode === 'dark' ? 'white' : '' }}>Rs{grandTotal}</p>
               </div>
             </div>
-            <Modal  />
+            <Modal name={name} address={address} pincode={pincode} phoneNumber={phoneNumber} setName={setName} setAddress={setAddress} setPincode={setPincode} setPhoneNumber={setPhoneNumber} buyNow={buyNow}/>
             {/* <button
               type="button"
               className="w-full  bg-violet-600 py-2 text-center rounded-lg text-white font-bold "
