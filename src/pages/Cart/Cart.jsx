@@ -45,66 +45,105 @@ function Cart() {
   const grandTotal = shipping + totalAmount;
 
   const buyNow = async ()=>{
-      if(name === "" || address === "" || pincode === "" || phoneNumber === ""){
-        return toast.error("All fields are required");
-      }
-      const addressInfo = {
-        name,
-        address,
-        pincode,
-        phoneNumber,
-        date: new Date().toLocaleString(
-          "en-US",
-          {
-            month: "short",
-            day: "2-digit",
-            year: "numeric",
+    if(name === "" || address === "" || pincode === "" || phoneNumber === ""){
+            return toast.error("All fields are required");
           }
-        )
-      }
-       console.log(addressInfo);
+          const addressInfo = {
+                  name,
+                  address,
+                  pincode,
+                  phoneNumber,
+                  date : new Date.toLocaleString("en-US" ,{
+                    month : "short",
+                    day : "2-digit",
+                    year : "numeric"
+                  }),
+                }
+
+          const orderInfo = {
+                      cartItems,
+                      addressInfo,
+                      date : new Date.toLocaleString("en-US" ,{
+                        month : "short",
+                        day : "2-digit",
+                        year : "numeric"
+                      }),
+                      email: JSON.parse(localStorage.getItem("user")).user.email,
+                      userid: JSON.parse(localStorage.getItem("user")).user.uid,
+                      // paymentId
+                    }
+            
+                    try {
+                      const orderRef = collection(fireDB , "orders")
+                      addDoc(orderRef , orderInfo);
+            
+                    } catch (error) {
+                      console.log(error);
+                    }
   }
 
+
+  // const buyNow = async ()=>{
+  //     if(name === "" || address === "" || pincode === "" || phoneNumber === ""){
+  //       return toast.error("All fields are required");
+  //     }
+  //     const addressInfo = {
+  //       name,
+  //       address,
+  //       pincode,
+  //       phoneNumber,
+  //       date: new Date().toLocaleString(
+  //         "en-US",
+  //         {
+  //           month: "short",
+  //           day: "2-digit",
+  //           year: "numeric",
+  //         }
+  //       )
+  //     }
+  //      console.log(addressInfo);
+  // }
+
   // razorpay payment gateway
-  var options = {
-    key: "",
-    key_secret: "",
-    amount: parseInt(grandTotal * 100),
-    currency: "INR",
-    order_receipt: 'order_rcptid_' + name,
-    name: "E-Mart",
-    description: "for testing purpose",
-    handler: function (response) {
-        console.log(response)
-        toast.success('Payment Successful')
+//   var options = {
+//     key: "",
+//     key_secret: "",
+//     amount: parseInt(grandTotal * 100),
+//     currency: "INR",
+//     order_receipt: 'order_rcptid_' + name,
+//     name: "E-Mart",
+//     description: "for testing purpose",
+//     handler: function (response) {
+//         console.log(response)
+//         toast.success('Payment Successful')
 
-        const paymentId = response.razorpay_payment_id;
-        const orderInfo = {
-          cartItems,
-          addressInfo,
-          date : new Date.toLocaleString("en-US" ,{
-            month : "short",
-            day : "2-digit",
-            year : "numeric"
-          }),
-          email: JSON.parse(localStorage.getItem("user")).user.email,
-          userid: JSON.parse(localStorage.getItem("user")).user.uid,
-          paymentId
-        }
+//         const paymentId = response.razorpay_payment_id;
+//         const orderInfo = {
+//           cartItems,
+//           addressInfo,
+//           date : new Date.toLocaleString("en-US" ,{
+//             month : "short",
+//             day : "2-digit",
+//             year : "numeric"
+//           }),
+//           email: JSON.parse(localStorage.getItem("user")).user.email,
+//           userid: JSON.parse(localStorage.getItem("user")).user.uid,
+//           paymentId
+//         }
 
-        try {
-          const orderRef = collection(fireDB , "orders")
-          addDoc(orderRef , orderInfo);
+//         try {
+//           const orderRef = collection(fireDB , "orders")
+//           addDoc(orderRef , orderInfo);
 
-        } catch (error) {
-          console.log(error);
-        }
-    },
+//         } catch (error) {
+//           console.log(error);
+//         }
+//     },
 
-    theme: {
-        color: "#3399cc"
-    }
-};
+//     theme: {
+//         color: "#3399cc"
+//     }
+// };
 
   return (
     <Layout >
